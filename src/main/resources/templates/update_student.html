@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+	rel="stylesheet">
+<link rel="icon" href="logoforpng.png">
+<title>CODEIT.com/Register</title>
+<style>
+#enquiry {
+	margin-bottom: 25px;
+}
+
+.navbar-brand {
+	display: flex;
+}
+
+.navbar-brand h3 {
+	color: #4CAF50;
+	margin-top: 16px;
+}
+
+#mainnav {
+	height: 70px;
+}
+
+#navsecond {
+	height: 70px;
+}
+
+#enquiry {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	margin-top: 20px;
+}
+
+p {
+	color: white;
+	font-weight: 600;
+	margin-left: 600px;
+	margin-top: 30px;
+}
+
+.youtube {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-right: 10px;
+}
+
+.youtube a:hover {
+	color: black;
+}
+
+.free {
+	color: white;
+}
+
+.container {
+	height: 165vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.form-container {
+	width: 100%;
+	max-width: 450px;
+	padding: 40px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(11, 112, 11, 0.5);
+}
+
+.form-container .form-title {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.form-container .form-footer {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.form-container .form-footer a {
+	text-decoration: none;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<nav class="nav1 navbar navbar-expand-lg navbar-light bg-success"
+		id="mainnav">
+		<div class="container-fluid " id="enquiry">
+			<p class="">
+				For Enquiry: <i class="fa-solid fa-phone" style="color: #ffffff;"></i>+91
+				9322321831
+			</p>
+		</div>
+		<div class="youtube">
+			<i class="fa-brands fa-youtube"
+				style="color: #ff0000; font-size: 30px; margin-right: 10px;"></i> <a
+				class="free" href="https://www.youtube.com/@trainwithcodeit"
+				style="text-decoration: none; font-size: 15px; font-weight: 800; line-height: 1;">Free
+				Tutorials</a>
+		</div>
+	</nav>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light"
+		id="navsecond">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img src="logo.jpg" alt="Logo"
+				width="70" height="70" class="d-inline-block align-text-top">
+				<h3>CODE IT Software Training Institute</h3>
+			</a>
+			<button class="navbar-toggler bg-success" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav"></div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="form-container">
+			<h2 class="form-title ">Update</h2>
+			<form th:action="@{/updatestudent}" th:object="${student}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <input type="hidden" th:field="*{password}" />
+    <input type="hidden" th:field="*{role}" />
+    <input type="hidden" th:field="*{status}" />
+    <input type="hidden" th:field="*{address}" />
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Full Name</label>
+        <input type="text" th:field="*{name}" class="form-control" id="name" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="phone" class="form-label">Phone Number</label>
+        <input type="number" th:field="*{phone}" class="form-control" id="phone" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" th:field="*{email}" class="form-control" id="email" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="courseFees" class="form-label">Total Fees</label>
+        <input type="number" th:field="*{courseFees}" class="form-control" id="courseFees" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="completedFees" class="form-label">Completed Fees</label>
+        <input type="number" th:field="*{completedFees}" class="form-control" id="completedFees" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="pendingFees" class="form-label">Pending Fees</label>
+        <input type="number" th:field="*{pendingFees}" class="form-control" id="pendingFees" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="gender" class="form-label">Gender</label>
+        <select class="form-control" th:field="*{gender}" id="gender">
+            <option value="male" th:selected="*{gender == 'male'}">Male</option>
+            <option value="female" th:selected="*{gender == 'female'}">Female</option>
+            <option value="other" th:selected="*{gender == 'other'}">Other</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="course" class="form-label">Course</label>
+        <select class="form-control" th:field="*{course}" id="course">
+            <option value="Full Stack Java Development" th:selected="*{course == 'Full Stack Java Development'}">Full Stack Java Development</option>
+            <option value="Data Science" th:selected="*{course == 'Data Science'}">Data Science</option>
+            <option value="Android Development" th:selected="*{course == 'Android Development'}">Android Development</option>
+            <option value="Python Development" th:selected="*{course == 'Python Development'}">Python Development</option>
+            <option value="Software Testing" th:selected="*{course == 'Software Testing'}">Software Testing</option>
+        </select>
+    </div>
+
+    <input type="submit" class="btn btn-success w-100 mb-2" value="Update" />
+</form>
+
+		</div>
+	</div>
+</body>
+</html>

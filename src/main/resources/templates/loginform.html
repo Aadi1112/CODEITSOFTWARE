@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+ <html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="logoforpng.png">
+  <title>CODEIT.com/Login</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .navbar-brand{
+    display: flex;
+}
+.navbar-brand h3{
+    color:  #4CAF50;
+    margin-top: 16px;
+}
+
+#mainnav{
+
+    height: 70px;
+}
+
+#navsecond{
+
+    height: 70px;
+}
+
+#enquiry{
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 20px;
+}
+
+p{
+    color: white;
+    font-weight: 600;
+    margin-left: 600px;
+    margin-top: 30px;
+}
+
+.youtube{
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 10px;
+
+}
+
+
+.youtube a:hover{
+
+    color: black;
+
+
+   
+}
+
+.free{
+
+    color: white;
+}
+
+#enquiry{
+    margin-bottom: 29px;
+}
+
+
+    .container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 450px; 
+      padding: 40px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(11, 112, 11, 0.5);
+    }
+
+    .form-container .form-title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-container .form-footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .form-container .form-footer a {
+      text-decoration: none;
+      text-align: center;
+      
+    }
+    .form-footer p a{
+        color: blue;
+
+    }
+    .form-footer p a:hover{
+        color: black;
+    }
+  </style>
+</head>
+<body>
+    <nav class="nav1 navbar navbar-expand-lg navbar-light bg-success" id="mainnav" >
+        <div  class="container-fluid " id="enquiry">
+            <p class="">For Enquiry: <i class="fa-solid fa-phone" style="color: #ffffff;"></i>+91 9322321831</p>
+        </div>
+       <div class="youtube">
+        <i class="fa-brands fa-youtube" style="color: #ff0000; font-size: 30px;margin-right: 10px;" ></i> <a class="free" href="https://www.youtube.com/@trainwithcodeit" style="text-decoration: none;font-size: 15px;font-weight: 800;line-height: 1;">Free Tutorials</a>
+       </div>
+       </nav>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navsecond">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="logo.jpg" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
+                        <h3>Code IT Software Training Institute</h3>
+                    </a>
+                    <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                    </div>
+                </div>
+            </nav>
+    
+  <div class="container ">
+    <div class="form-container ">
+      <h2 class="form-title ">Login</h2>
+      <div style="color:red">
+          
+            
+        </div>
+
+     <form th:action="@{/loginstudent}" method="post">
+    <!-- Error Message -->
+        <h3 style="color:red;font-size:20px" th:if="${error != null}" th:text="${error}"></h3>
+
+
+    <!-- Email -->
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" name="username" placeholder="Enter your email" required />
+    </div>
+
+    <!-- Password -->
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required />
+    </div>
+
+    <!-- Login Button -->
+    <input type="submit" class="btn btn-success w-100 mb-2" value="Login" />
+
+    <!-- Register Link -->
+    <a th:href="@{/register}" class="btn btn-success w-100"><strong>Don't have an account? Register</strong></a>
+</form>
+
+      <!-- Create New Account / Register Link -->
+      
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (make sure this is included for form functionality) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

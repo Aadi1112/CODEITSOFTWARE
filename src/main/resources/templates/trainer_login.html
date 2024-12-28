@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer Login</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+        .login-form {
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .login-form .form-group {
+            margin-bottom: 15px;
+        }
+        .login-form .btn {
+            width: 100%;
+            padding: 10px;
+        }
+        .login-form .form-text {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-form">
+    <h2>Trainer Login</h2>
+    <form action="/trainerlogin" method="POST">
+            <h3 style="color:red;font-size:20px" th:if="${error != null}" th:text="${error}"></h3>
+    
+        <!-- Email Address -->
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" required placeholder="Enter email">
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required placeholder="Enter password">
+        </div>
+
+        <!-- Remember Me Checkbox -->
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
+            <label class="form-check-label" for="rememberMe">Remember me</label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Login</button>
+
+        <!-- Forgot password or registration link -->
+        <div class="form-text">
+            <a href="/forgot-password">Forgot your password?</a> 
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
