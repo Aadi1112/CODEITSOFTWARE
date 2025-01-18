@@ -21,7 +21,6 @@ import com.codeIt.service.CustomTrainerDetailsService;
 import com.codeIt.service.CustomUserDetailsService;
 
 @Configuration
-@EnableWebSecurity(debug = true)
 public class SecurityConfig {
 
 	@Autowired

@@ -15,13 +15,18 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.codeIt.entity.Enquiry;
 import com.codeIt.entity.Student;
 import com.codeIt.repo.StudentRepository;
 import com.codeIt.service.StudentService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
@@ -52,9 +57,22 @@ public class HomeController {
 	
 	
 
+//	@GetMapping({"/","/home"})
+//	public String homePage(Model result) {
+//		result.addAttribute("Enquiry", new Enquiry());
+//		return "home";
+//	}
+	
 	@GetMapping({"/","/home"})
-	public String homePage() {
-		return "home";
+	public String showHomePage(Model model, HttpSession session) {
+	    if (session.getAttribute("formSubmitted") != null) {
+	        model.addAttribute("showModal", false);
+	    } else {
+	        model.addAttribute("showModal", true);
+	    }
+	    
+	    model.addAttribute("Enquiry", new Enquiry());
+	    return "home"; // Your view file
 	}
 
 	@GetMapping("/login1")
@@ -142,7 +160,9 @@ public class HomeController {
 	}
 
 	@PostMapping("/registerstudent")
-	public String save(Student student, Model model) {
+	public String save(@Validated Student student,BindingResult result, Model model) {
+		
+		
 		if(student.getCourse().equals("Full Stack Java Development"))
 		{
 		student.setCourseFees("50000.00");
@@ -176,9 +196,15 @@ public class HomeController {
 		        // If not, set the role as "USER"
 		        student.setRole("ROLE_USER");
 		    }
+		if(result.hasErrors())
+		{
+			return "register";
+		}
 		repository.save(student);
+		
+		model.addAttribute("msg", "Registration Success");
 
-		return "redirect:/";
+		return "register";
 
 	}
 	

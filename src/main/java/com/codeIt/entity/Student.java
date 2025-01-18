@@ -1,8 +1,8 @@
 package com.codeIt.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 public class Student {
@@ -11,77 +11,58 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "Name is required and cannot be empty.")
+    @Size(min = 2, max = 50, message = "Name must be between 3 and 15 characters.")
     private String name;
 
+    @Email(message = "Email must be a valid email address.")
+    @NotBlank(message = "Email is required.")
     @Column(unique = true, nullable = false)
     private String email;
-    
+
+    @NotBlank(message = "Password is required.")
+    @Size(min = 8, message = "Password must be at least 8 characters long.")
     private String password;
 
+    @NotBlank(message = "Phone number is required.")
+    @Pattern(regexp = "\\d{10}", message = "Phone number must be exactly 10 digits.")
     @Column(length = 15, nullable = false)
     private String phone;
 
+    @NotBlank(message = "Address cannot be empty.")
     private String address;
 
     private String gender;
 
     private String course;
-    
+
     private String role;
-    
-    public String getCourseFees() {
-		return courseFees;
-	}
 
-	public void setCourseFees(String courseFees) {
-		this.courseFees = courseFees;
-	}
 
-	private String courseFees;
-	
-	private String pendingFees;
-	
-	private String completedFees;
-	
-	
-	
-	
-	
+    private String courseFees;
 
-	public String getPendingFees() {
-		return pendingFees;
-	}
+    private String pendingFees;
 
-	public void setPendingFees(String pendingFees) {
-		this.pendingFees = pendingFees;
-	}
+    private String completedFees;
 
-	public String getCompletedFees() {
-		return completedFees;
-	}
-
-	public void setCompletedFees(String completedFees) {
-		this.completedFees = completedFees;
-	}
-
-	public LocalDateTime getUpdationDate() {
-		return updationDate;
-	}
-
-	public void setUpdationDate(LocalDateTime updationDate) {
-		this.updationDate = updationDate;
-	}
-
-	@Column(insertable = false)
-	private LocalDateTime updationDate=LocalDateTime.now();
+    @Column(insertable = false)
+    private LocalDateTime updationDate = LocalDateTime.now();
 
     @Column(updatable = false)
     private LocalDateTime registrationDate = LocalDateTime.now();
 
-    private String status ; // active registration
-
-    // Getters and setters
    
+    private String status;
+
+    // Getters and Setters
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -99,15 +80,15 @@ public class Student {
         this.email = email;
     }
 
-    public Integer getId() {
-		return id;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getPhone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -139,6 +120,46 @@ public class Student {
         this.course = course;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getCourseFees() {
+        return courseFees;
+    }
+
+    public void setCourseFees(String courseFees) {
+        this.courseFees = courseFees;
+    }
+
+    public String getPendingFees() {
+        return pendingFees;
+    }
+
+    public void setPendingFees(String pendingFees) {
+        this.pendingFees = pendingFees;
+    }
+
+    public String getCompletedFees() {
+        return completedFees;
+    }
+
+    public void setCompletedFees(String completedFees) {
+        this.completedFees = completedFees;
+    }
+
+    public LocalDateTime getUpdationDate() {
+        return updationDate;
+    }
+
+    public void setUpdationDate(LocalDateTime updationDate) {
+        this.updationDate = updationDate;
+    }
+
     public LocalDateTime getRegistrationDate() {
         return registrationDate;
     }
@@ -147,40 +168,20 @@ public class Student {
         this.registrationDate = registrationDate;
     }
 
-	public String getStatus() {
-		return status;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	@Override
-	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", phone="
-				+ phone + ", address=" + address + ", gender=" + gender + ", course=" + course + ", role=" + role
-				+ ", courseFees=" + courseFees + ", pendingFees=" + pendingFees + ", completedFees=" + completedFees
-				+ ", updationDate=" + updationDate + ", registrationDate=" + registrationDate + ", status=" + status
-				+ "]";
-	}
-
-	
-	
-   
+    @Override
+    public String toString() {
+        return "Student [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", phone="
+                + phone + ", address=" + address + ", gender=" + gender + ", course=" + course + ", role=" + role
+                + ", courseFees=" + courseFees + ", pendingFees=" + pendingFees + ", completedFees=" + completedFees
+                + ", updationDate=" + updationDate + ", registrationDate=" + registrationDate + ", status=" + status
+                + "]";
+    }
 }

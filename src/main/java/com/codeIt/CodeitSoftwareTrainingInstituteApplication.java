@@ -23,7 +23,7 @@ public class CodeitSoftwareTrainingInstituteApplication implements CommandLineRu
 		// TODO Auto-generated method stub
 		
 //		Student student=new Student();
-//		student.setName("Ram");
+//		student.setName("Ram");.
 //		student.setCourse("JAVA FULL STACK");
 //		student.setAddress("Pune");
 //		student.setEmail("aadi@gmail.com");
